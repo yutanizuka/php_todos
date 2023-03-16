@@ -25,10 +25,25 @@ try {
 <head>
   <meta charset="utf-8">
   <title>My Todos</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <h1>Todos</h1>
+<ul>
+  <li>
+    <input type="checkbox">
+    <sapn>Title</span>
+  </li>
 
+  <li>
+    <input type="checkbox" checked>
+    <sapn class="done">Title</span>
+  </li>
+  <li>
+    <input type="checkbox">
+    <sapn>Title</span>
+  </li>
+</ul>
   
 </body>
 </html>
