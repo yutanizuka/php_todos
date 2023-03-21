@@ -25,7 +25,16 @@ function h($str)
 }
 
 function addTodo($pdo)
+{
+  $title = trim(filter_input(INPUT_POST,'title'));
+  if ($title ===''){
+    return;
+  }
 
+  $stmt = $pdo->prepare("INSERT INTO todos (title) VALUES (:title)");
+  $stmt->bindValue('title', $title, PDO::PARAM_STR);
+  $stmt->execute();
+}
 function getTodos($pdo)
 {
   $stmt = $pdo->query("SELECT * FROM todos ORDER BY id DESC");
@@ -34,17 +43,16 @@ function getTodos($pdo)
 }
 
 
-if ($_SERVER[`REQUEST_METHOD`]=== `POST`);
-$todos = $stmt ->fetchAll();
-return $todos;
+
   // $todos = getTodos($pdo);
   // var_dump($todos);
 
   // exit;
 
-if ($SERVER['REQUEST_METHOD'] === `POST`){
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   addTodo($pdo);
 }
+
 $todos = getTodos($pdo);
 ?>
 
