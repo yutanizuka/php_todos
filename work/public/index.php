@@ -2,6 +2,8 @@
 define('DSN', 'mysql:host=db;dbname=myapp;charset=utf8mb4');
 define('DB_USER','myappuser');
 define('DB_PASS','myapppass');
+// define('SITE_URL', 'http://localhost:8562');
+define('SITE_URL', 'http://' . $_SERVER['HTTP_HOST']);
 
 try {
   $pdo = new PDO(
@@ -49,8 +51,11 @@ function getTodos($pdo)
 
   // exit;
 
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   addTodo($pdo);
+
+  header('Location: ' . SITE_URL);
 }
 
 $todos = getTodos($pdo);
