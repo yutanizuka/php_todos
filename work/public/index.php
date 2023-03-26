@@ -7,6 +7,8 @@ define('DB_PASS','myapppass');
 // define('SITE_URL', 'http://localhost:8562');
 define('SITE_URL', 'http://' . $_SERVER['HTTP_HOST']);
 
+createToken();
+
 function createToken()
 {
   if (!isset($_SESSION['token'])) {
@@ -72,6 +74,7 @@ function getTodos($pdo)
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  validateToken();
   addTodo($pdo);
 
   header('Location: ' . SITE_URL);
@@ -91,6 +94,7 @@ $todos = getTodos($pdo);
   <h1>Todos</h1>
   <form action="" method="post">
     <input type="text" name= "title" placeholder="Type new todo">
+    <input type="hidden" name="token" value="<?= h($_SESSION['token']); ?>">
     <button>Add</button>
   <ul>
     <?php foreach ($todos as $todo): ?>
