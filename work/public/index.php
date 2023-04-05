@@ -95,20 +95,21 @@ $todos = getTodos($pdo);
   <form action="" method="post">
     <input type="text" name= "title" placeholder="Type new todo">
     <input type="hidden" name="token" value="<?= h($_SESSION['token']); ?>">
-    <button>Add</button>
+</form>
   <ul>
     <?php foreach ($todos as $todo): ?>
     <li>
-    <input type="checkbox"<?= $todo->is_done ? 'checked' : '';?>>
-    <span class="<?= $todo->is_done ? 'done' : ''; ?>">
-    <?= h($todo->title); ?>
-    
-  </li>
-  <?php endforeach; ?>
+      <form action="" method="post">
+        <input type="checkbox"<?= $todo->is_done ? 'checked' : '';?>>
+        <input type="hidden" name="id" value="<?= h($todo->id); ?>">
+        <input type="hidden" name="token" value="<?= h($_SESSION['token']); ?>">
+      </form>
 
-  
-  
-</ul>
-  
+      <span class="<?= $todo->is_done ? 'done' : ''; ?>">
+        <?= h($todo->title); ?>
+      </span>
+    </li>
+    <?php endforeach; ?>
+  </ul>
 </body>
 </html>
