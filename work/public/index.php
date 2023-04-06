@@ -16,6 +16,7 @@ function createToken()
   }
 }
 
+
 function validateToken()
 {
   if (
@@ -76,6 +77,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $action = filter_input(INPUT_GET, 'action');
   addTodo($pdo);
   header('Location: ' . SITE_URL);
+}
+
+
+switch (action) {
+  case 'add':
+  break;
+
+  case 'toggle'
+  toggleTodo($pdo);
+  break;
+
 }
 
 $todos = getTodos($pdo);
