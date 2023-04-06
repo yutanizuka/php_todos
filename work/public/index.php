@@ -65,8 +65,6 @@ function getTodos($pdo)
   return $todos;
 }
 
-
-
   // $todos = getTodos($pdo);
   // var_dump($todos);
 
@@ -75,8 +73,8 @@ function getTodos($pdo)
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   validateToken();
+  $action = filter_input(INPUT_GET, 'action');
   addTodo($pdo);
-
   header('Location: ' . SITE_URL);
 }
 
@@ -92,14 +90,14 @@ $todos = getTodos($pdo);
 </head>
 <body>
   <h1>Todos</h1>
-  <form action="" method="post">
+  <form action="?action=add" method="post">
     <input type="text" name= "title" placeholder="Type new todo">
     <input type="hidden" name="token" value="<?= h($_SESSION['token']); ?>">
-</form>
+  </form>
   <ul>
     <?php foreach ($todos as $todo): ?>
     <li>
-      <form action="" method="post">
+      <form action="?action=toggle" method="post">
         <input type="checkbox"<?= $todo->is_done ? 'checked' : '';?>>
         <input type="hidden" name="id" value="<?= h($todo->id); ?>">
         <input type="hidden" name="token" value="<?= h($_SESSION['token']); ?>">
