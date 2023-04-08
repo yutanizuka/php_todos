@@ -8,3 +8,12 @@
     });
   });
 }
+
+{
+  const checkboxes = document.querySelectorAll('input[type="delete"]');
+  deletes.forEach(span => {
+    span.addEventListener('change', () => {
+      span.parentNode.submit();
+    });
+  });
+}
