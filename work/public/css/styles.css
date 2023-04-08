@@ -1,5 +1,5 @@
 body {
-  font-Family: Arial,sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 main {
@@ -13,22 +13,39 @@ h1 {
   margin: 0 0 16px;
 }
 
-
-ul{ 
-  list-style:none;
-  margin:0;
-  padding:0;
+input[type="text"] {
+  width: 100%;
+  padding: 4px;
+  box-sizing: border-box;
+  margin-bottom: 16px;
 }
 
-li{
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
   display: flex;
+  margin-bottom: 8px;
 }
+
 .done {
   text-decoration: line-through;
   color: #ccc;
 }
 
-.delete{
+input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+.delete {
   color: #ccc;
-  cursor:pointer;
+  cursor: pointer;
+}
+
+.delete-form {
+  margin-left: auto;
+  padding-left: 8px;
 }
