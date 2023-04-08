@@ -10,9 +10,12 @@
 }
 
 {
-  const checkboxes = document.querySelectorAll('input[type="delete"]');
+  const deletes = document.querySelectorAll('.delete');
   deletes.forEach(span => {
-    span.addEventListener('change', () => {
+    span.addEventListener('click', () => {
+      if (!confirm('Are you sure?')){
+        return;
+      }
       span.parentNode.submit();
     });
   });

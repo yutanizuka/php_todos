@@ -17,6 +17,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     case 'toggle':
       toggleTodo($pdo);
       break;
+    case 'delete':
+      deleteTodo($pdo);
+      break;
+    default:
+      exit;
   }
 
   header('Location: ' . SITE_URL);
