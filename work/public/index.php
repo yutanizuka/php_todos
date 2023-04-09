@@ -6,6 +6,11 @@ Token::create();
 
 $pdo = Database::getInstance();
 
+$todo = new Todo();
+$todo ->processPost();
+$todos = $todo->getAll();
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   Token::validate();
   $action = filter_input(INPUT_GET, 'action');
