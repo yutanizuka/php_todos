@@ -2,12 +2,10 @@
 
 require_once(__DIR__ . '/../app/config.php');
 
-Token::create();
-
 $pdo = Database::getInstance();
 
-$todo = new Todo();
-$todo ->processPost();
+$todo = new Todo($pdo);
+$todo->processPost();
 $todos = $todo->getAll();
 
 ?>
