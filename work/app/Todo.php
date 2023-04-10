@@ -1,5 +1,7 @@
 <?php
 
+namespace MyApp;
+
 class Todo
 {
   private $pdo;
@@ -15,7 +17,7 @@ class Todo
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       Token::validate();
       $action = filter_input(INPUT_GET, 'action');
-
+    
       switch ($action) {
         case 'add':
           $this->add();
@@ -29,13 +31,11 @@ class Todo
         default:
           exit;
       }
-
+    
       header('Location: ' . SITE_URL);
       exit;
     }
   }
-
-
 
   private function add()
   {
@@ -45,7 +45,7 @@ class Todo
     }
   
     $stmt = $this->pdo->prepare("INSERT INTO todos (title) VALUES (:title)");
-    $stmt->bindValue('title', $title, PDO::PARAM_STR);
+    $stmt->bindValue('title', $title, \PDO::PARAM_STR);
     $stmt->execute();
   }
   
@@ -57,11 +57,9 @@ class Todo
     }
   
     $stmt = $this->pdo->prepare("UPDATE todos SET is_done = NOT is_done WHERE id = :id");
-    $stmt->bindValue('id', $id, PDO::PARAM_INT);
+    $stmt->bindValue('id', $id, \PDO::PARAM_INT);
     $stmt->execute();
   }
-  
-  
   
   private function delete()
   {
@@ -71,11 +69,9 @@ class Todo
     }
   
     $stmt = $this->pdo->prepare("DELETE FROM todos WHERE id = :id");
-    $stmt->bindValue('id', $id, PDO::PARAM_INT);
+    $stmt->bindValue('id', $id, \PDO::PARAM_INT);
     $stmt->execute();
   }
-  
-  
 
   public function getAll()
   {
@@ -83,6 +79,4 @@ class Todo
     $todos = $stmt->fetchAll();
     return $todos;
   }
-
-
 }
